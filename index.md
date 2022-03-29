@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+### Kali终端下的复制和粘贴
 
-You can use the [editor on GitHub](https://github.com/C137badcat/C137badcat.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+复制：使用鼠标选中内容，就可以完成复制
+粘贴：移动光标到需要粘贴的位置，按下鼠标中间的滚轮，就可以粘贴
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### 进入root权限
 
-### Markdown
+①设置root密码：  
+命令：sudo passwd root  
+以mk用户为例：  
+![设置root密码](https://s2.loli.net/2022/03/29/zuYHqARpkdBKNMI.png)  
+第一次输入的密码是mk用户的密码，第二次输入的密码和重输入的密码是给root配的密码
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+②进入root权限：  
+以yuyi用户为例：  
+此处输入的密码是之前给root配的密码  
+![进入root权限](https://s2.loli.net/2022/03/29/rnUPZpKJbQkLzaB.png)  
+（pwd：查看家目录，家目录变成/root说明切换成功）
 
-```markdown
-Syntax highlighted code block
+### 配置apt命令在线安装包的源（可以配置为国内源）：  
 
-# Header 1
-## Header 2
-### Header 3
+Kali自带的源是国外的，经常会因为网络问题，而无法安装或更新软件包，而且国外的速度很慢  
+命令：vim /etc/apt/sources.list
+![配置apt](https://s2.loli.net/2022/03/29/tPzn4ByKDQxYMC8.png)
 
-- Bulleted
-- List
+①apt update  
+作用：从/etc/apt/sources.list 文件中定义的源中获取最新的软件包列表。即运行apt update 并没有更新软件，而是相当于Windows下面的检查更新，获取的是软件的状态
 
-1. Numbered
-2. List
+②apt upgrade  
+③apt dist-upgrade  
+![二者区别](https://s2.loli.net/2022/03/29/y5mdGKw2FJH3QtA.png)  
+更新：每次更新之前，需要先运行update（获取包的一些信息，比如大小和版本号），然后才能运行upgrade和dist-upgrade（下载包），如果没有获取包的信息，那么upgrade就是无效的  
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/C137badcat/C137badcat.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+补充:  
+apt和apt-get区别：  
+apt-get虽然没有被弃用，但作为普通用户，应该首先使用apt，更方便使用  
+apt install和apt-get install功能一样，都是安装软件包，没有区别  
